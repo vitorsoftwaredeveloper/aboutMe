@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,7 +31,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.aboutme.ui.theme.AboutMeTheme
-
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Favorite // ou outro ícone
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.material3.Icon
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +47,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AboutMeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) {}
+                Scaffold(modifier = Modifier.fillMaxSize()) {
+                    GreetingImage(modifier = Modifier)
+                }
             }
         }
     }
@@ -50,13 +61,11 @@ fun GreetingImage(modifier: Modifier = Modifier) {
     Column(modifier = Modifier.fillMaxSize().background(Color.hsl(126f,0.31f,0.87f))) {
         Row(modifier = Modifier.weight(1f)) {
             Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight()
+                modifier = Modifier.weight(1f).fillMaxHeight(),
+                contentAlignment = Alignment.BottomEnd
 
             ){
-                Column(verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()){
+                Column(verticalArrangement = Arrangement.Bottom, modifier = Modifier.fillMaxSize()){
                     Row(
                         modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
                     ){
@@ -75,50 +84,86 @@ fun GreetingImage(modifier: Modifier = Modifier) {
 
                     Text(
                         text = "Vitor Soares",
-//                        fontWeight = FontWeight.Bold,
                         fontSize = 44.sp,
-                        modifier = Modifier
-                            .padding(12.dp)
-                            .fillMaxWidth(),
+                        modifier = Modifier.padding(12.dp).fillMaxWidth(),
                         textAlign = TextAlign.Center,
-
                         )
+
                     Text(
                         text = "Android Developer Extraordinary",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.hsl(146f,0.75f,0.30f),
                         textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .padding(16.dp,0.dp,16.dp,0.dp)
-                            .fillMaxWidth(),
+                        modifier = Modifier.padding(16.dp,0.dp,16.dp,0.dp).fillMaxWidth(),
                     )
                 }
             }
         }
+
         Row(modifier = Modifier.weight(1f)) {
             Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight()
-//                    .background(Color(0xFFB69DF8))
+                modifier = Modifier.weight(1f).fillMaxHeight(),
+                contentAlignment = Alignment.BottomEnd
             ){
-                Column(verticalArrangement = Arrangement.Center,modifier = Modifier.fillMaxSize()){
-//                    Text(
-//                        text = "Row composable",
-//                        fontWeight = FontWeight.Bold,
-//                        fontSize = 18.sp,
-//                        modifier = Modifier.padding(0.dp,0.dp,0.dp,6.dp)
-//                            .fillMaxWidth(),
-//                        textAlign = TextAlign.Center,
-//
-//                        )
-//                    Text(
-//                        text = "A layout composable that places its children in a horizontal sequence.",
-//                        fontSize = 16.sp,
-//                        modifier = Modifier.padding(16.dp,0.dp,16.dp,0.dp),
-//                        textAlign = TextAlign.Justify
-//                    )
+                Column( modifier = Modifier.padding(24.dp),){
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        Icon(
+                            imageVector = Icons.Filled.Phone,
+                            contentDescription = "Phone number",
+                            tint = Color.hsl(146f,0.75f,0.30f),
+                        )
+                        Spacer(modifier = Modifier.width(24.dp))
+                        Text(
+                            text = "+55 (83) 9 9952-3137",
+                            fontSize = 18.sp,
+                            modifier = Modifier.width(180.dp)
+                        )
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        Icon(
+                            imageVector = Icons.Filled.Share,
+                            contentDescription = "contact",
+                            tint = Color.hsl(146f,0.75f,0.30f),
+                        )
+                        Spacer(modifier = Modifier.width(24.dp))
+                        Text(
+                            text = "@AndroidVitor",
+                            fontSize = 18.sp,
+                            modifier = Modifier.width(180.dp)
+                        )
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        Icon(
+                            imageVector = Icons.Filled.Email,
+                            contentDescription = "Email",
+                            tint = Color.hsl(146f,0.75f,0.30f),
+                        )
+                        Spacer(modifier = Modifier.width(24.dp))
+                        Text(
+                            text = "test@mail.com",
+                            fontSize = 18.sp,
+                            modifier = Modifier.width(180.dp)
+                        )
+                    }
                 }
             }
         }
